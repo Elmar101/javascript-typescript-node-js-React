@@ -1,0 +1,1 @@
+TotalRam = 15.84  FreeRam  = 5.42 usedRam = 10.42 countOfCpu = 8
