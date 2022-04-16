@@ -1,7 +1,14 @@
 const Joi = require("joi");
 const express = require("express");
+var morgan = require('morgan');
+
 const app = express();
+
+app.use(morgan('tiny'));
+
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static("public"));
 
 const users = [
   {
@@ -99,8 +106,8 @@ app.delete("/users/:id",(req,res)=>{
 });
 function validationFn(data) {
   const schema = Joi.object({
-    name: Joi.string().min(3).max(8).required(),
-    sname: Joi.string().min(3).max(8).required(),
+    name: Joi.string().min(3).max(10).required(),
+    sname: Joi.string().min(3).max(18).required(),
     age: Joi.number().integer().required(),
   });
 
