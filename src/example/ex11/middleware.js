@@ -12,6 +12,7 @@ function middlewareOne(req , res , next){
 }
 
 app.use(middlewareOne);
+
 app.use((req , res , next)=>{
     console.log("MIDDLEWARE IKIDEYIM");
     //res.send("MIDDLEWARE IKI TAMAMLANDI!");
