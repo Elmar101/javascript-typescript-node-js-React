@@ -2,22 +2,21 @@ import React, { ReducerState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Action, createStore} from "redux";
+import {Action, createStore, combineReducers} from "redux";
 
-const reducer = (state: string = "State" , action: Action<string> & { payload: {data: any} }) => {
-  if(action.type === "new state"){
-    return action.payload.data
-  }
+const userReducer = (state: string = "User1" , action: Action<string> & { payload: {data: string} }) => {
   return state
 };
-const store = createStore(reducer);
+const productReducer = (state: {name: string}[] = [{name:"IPone 5C"}] , action: Action<string> & { payload: {data: {name: string }[]} }) => {
+  return state
+};
 
-const newState: Action<string> & { payload: {data: any} } = {
-  type: "new state",
-  payload: {data: "New State"}
-}
+const rootReducer  = combineReducers({
+  user: userReducer,
+  products: productReducer
+});
 
-store.dispatch(newState);
+const store = createStore(rootReducer);
 
 console.log(store.getState());
 
